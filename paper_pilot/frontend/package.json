@@ -26,7 +26,9 @@
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.15.10",
+    "css-loader": "^6.10.0",
     "instead": "^1.0.3",
-    "react-router-dom": "^6.22.1"
+    "react-router-dom": "^6.22.1",
+    "style-loader": "^3.3.4"
   }
 }

@@ -1,13 +1,25 @@
+:root {
+  --text: #250904;
+  --background: #fefcfb;
+  --primary: #e2755e;
+  --secondary: #dab8b0;
+  --accent: #2e2e2e;
+}
 body {
   margin: 0px;
+  background-color: var(--background);
 }
 * {
   box-sizing: border-box;
 }
 
+.hidden {
+  display: none;
+}
+
 /* navbar*/
 .Navbar {
-  background-color: rgb(45, 45, 45);
+  background-color: var(--accent);
   height: 80px;
   display: flex;
   align-items: center;
@@ -29,13 +41,12 @@ body {
   border-radius: 3px;
 
   font-size: 16px;
-  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--background);
+  text-transform: capitalize;
 }
 
+.NavButton:hover,
 .active {
-  background-color: rgb(222, 120, 100);
-}
-
-.NavButton:hover {
-  background-color: rgb(221, 111, 89);
+  background-color: var(--primary);
 }

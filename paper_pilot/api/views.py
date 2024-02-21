@@ -36,6 +36,22 @@ def logout_view(request):
     logout(request)
     return HttpResponseRedirect("/")
 
+def register_view(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        email = request.POST["email"]
+        password = request.POST["password"]
+
+        try:
+            user = User.objects.create_user(username, email, password)
+            user.save()
+        except IntegrityError:
+            return HttpResponseRedirect("/api/login/")
+        login(request, user)
+        return HttpResponseRedirect("/")
+        
+    return render(request, 'frontend/index.html')
+
 @login_required(login_url='/api/login')
 def upload(request):
     if request.method == "POST":

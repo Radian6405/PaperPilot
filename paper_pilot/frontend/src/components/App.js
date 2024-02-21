@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Upload from "./pages/Upload";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
+import Register from "./pages/Register";
 
 
 export default class App extends Component {
@@ -25,6 +26,7 @@ export default class App extends Component {
               <Route path="/upload" element={<Upload />} />
               <Route path="/api/login" element={<Login />} />
               <Route path="/api/logout" element={<Logout />} />
+              <Route path="/api/register" element={<Register />} />
             </Routes>
           </div>
 

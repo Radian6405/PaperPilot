@@ -15,13 +15,18 @@ export default function Navbar() {
     <div className="Navbar">
       <CustomButton to="/">Home</CustomButton>
       <CustomButton to="/upload/">Upload</CustomButton>
-      <CustomButton to={user.username === "" ? "/api/login/" : "/api/logout"}>
-        {user.username === "" ? "Login" : "Logout"}
-      </CustomButton>
 
-      <div className={user.username === "" ? "hidden" : "NavButton active"}>
-        {user.username}
-      </div>
+      {user.username === "" ? 
+      <>
+      <CustomButton to="/api/login/">Login</CustomButton>
+      <CustomButton to="/api/register/">Register</CustomButton>
+      </>
+      :
+      <>
+      <CustomButton to="/api/logout/">Logout</CustomButton>
+      <div className="NavButton active">{user.username}</div>
+      </>
+    }
     </div>
   );
 }

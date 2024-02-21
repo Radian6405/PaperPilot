@@ -4,7 +4,7 @@ export default function Upload() {
   var csrftoken = getCookie("csrftoken");
   return (
     <>
-      <form action="/upload/" method="post">
+      <form action="/upload/" method="post" encType="multipart/form-data">
         <input type="hidden" name="csrfmiddlewaretoken" value={csrftoken} />
 
         <input type="text" name="name" required />

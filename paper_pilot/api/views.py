@@ -40,7 +40,7 @@ def logout_view(request):
 def upload(request):
     if request.method == "POST":
         name = request.POST.get("name")
-        file = request.POST.get("file")
+        file = request.FILES.get("file")
 
         f = Files(name=name, file=file, user=request.user)
         f.save()

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from .models import *
 from .serializers import *
@@ -34,3 +35,14 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect("/")
+
+@login_required(login_url='/api/login')
+def upload(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        file = request.POST.get("file")
+
+        f = Files(name=name, file=file, user=request.user)
+        f.save()
+        return HttpResponseRedirect("/")
+    return render(request, 'frontend/index.html')

@@ -9,4 +9,5 @@ urlpatterns = [
 
     #api calls
     path('getuser/', views.get_user, name='getuser')
+
 ]

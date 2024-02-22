@@ -12,6 +12,12 @@ def get_user(request):
 
     return JsonResponse(serializer.data)
 
+def get_pdfs(request):
+    fileList = Files.objects.filter(user=request.user.id).values()
+    serializer = pdfSerializer(fileList, many=True)
+
+    return JsonResponse(serializer.data, safe=False)
+
 # user authentication views
 def index(request):
     return HttpResponse("<h1>hi</h1>")
@@ -49,7 +55,7 @@ def register_view(request):
             return HttpResponseRedirect("/api/login/")
         login(request, user)
         return HttpResponseRedirect("/")
-        
+
     return render(request, 'frontend/index.html')
 
 @login_required(login_url='/api/login')

@@ -47,6 +47,6 @@ body {
 }
 
 .NavButton:hover,
-.active {
+.ActiveButton {
   background-color: var(--primary);
 }

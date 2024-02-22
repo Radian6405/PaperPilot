@@ -1,6 +1,8 @@
-import React, { Component,  useState, useEffect   } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { render } from "react-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { pdfjs } from "react-pdf";
+
 import Navbar from "./Navbar";
 import Home from "./pages/Home";
 import Upload from "./pages/Upload";
@@ -8,6 +10,10 @@ import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 import Register from "./pages/Register";
 
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  "pdfjs-dist/build/pdf.worker.min.js",
+  import.meta.url
+).toString();
 
 export default class App extends Component {
   constructor(props) {
@@ -29,7 +35,7 @@ export default class App extends Component {
               <Route path="/api/register" element={<Register />} />
             </Routes>
           </div>
-
+          
         </>
       </BrowserRouter>
     );

@@ -16,17 +16,17 @@ export default function Navbar() {
       <CustomButton to="/">Home</CustomButton>
       <CustomButton to="/upload/">Upload</CustomButton>
 
-      {user.username === "" ? 
-      <>
-      <CustomButton to="/api/login/">Login</CustomButton>
-      <CustomButton to="/api/register/">Register</CustomButton>
-      </>
-      :
-      <>
-      <CustomButton to="/api/logout/">Logout</CustomButton>
-      <div className="NavButton active">{user.username}</div>
-      </>
-    }
+      {user.username === "" ? (
+        <>
+          <CustomButton to="/api/login/">Login</CustomButton>
+          <CustomButton to="/api/register/">Register</CustomButton>
+        </>
+      ) : (
+        <>
+          <CustomButton to="/api/logout/">Logout</CustomButton>
+          <div className="NavButton ActiveButton">{user.username}</div>
+        </>
+      )}
     </div>
   );
 }
@@ -36,7 +36,7 @@ function CustomButton({ to, children, ...props }) {
   const isActive = useMatch({ path: resolvedPath.pathname, end: true });
   return (
     <Link to={to} {...props}>
-      <div className={isActive ? "NavButton active" : "NavButton"}>
+      <div className={isActive ? "NavButton ActiveButton" : "NavButton"}>
         {children}
       </div>
     </Link>

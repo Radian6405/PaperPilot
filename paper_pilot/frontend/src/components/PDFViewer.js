@@ -2,10 +2,9 @@ import React, { Component, useState } from "react";
 import { Document, Page } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
-import pdf from "./test/dummy.pdf";
 
 
-export default function PDFViewer() {
+export default function PDFViewer({file_path}) {
   const [numPages, setNumPages] = useState();
   const [pageNumber, setPageNumber] = useState(1);
 
@@ -15,7 +14,7 @@ export default function PDFViewer() {
 
   return (
     <div>
-      <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
+      <Document file={file_path} onLoadSuccess={onDocumentLoadSuccess}>
         <Page pageNumber={pageNumber} />
       </Document>
       <p>

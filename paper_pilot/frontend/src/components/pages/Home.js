@@ -13,15 +13,24 @@ export default function Home() {
     fetchPDFs();
   }, []);
 
-  function get_file_path(file) {
+  function loadFileThumbnails(file) {
     return (
-      <PDFViewer key={crypto.randomUUID()} file_path={"../../../media/" + file.file_path} />
+      <PDFViewer
+        key={crypto.randomUUID()}
+        file_path={"../../../media/" + file.file_path}
+        img_path={"../../../static/download.png"}
+        file_obj={file}
+      />
     );
   }
 
   return (
     <>
-      {filePaths.map(get_file_path)}
+      <div className="container-fluid">
+        <div className="row row-cols-1">
+          {filePaths.map(loadFileThumbnails)}
+        </div>
+      </div>
     </>
   );
 }

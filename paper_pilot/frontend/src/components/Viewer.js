@@ -23,6 +23,9 @@ export default function Viewer({ show, setShow, fullscreen, file }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  {
+    /* functions for viewer tools */
+  }
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
   }
@@ -53,9 +56,12 @@ export default function Viewer({ show, setShow, fullscreen, file }) {
 
   return (
     <Modal show={show} onHide={handleClose} fullscreen={fullscreen}>
+      {/* Header */}
       <Modal.Header closeButton closeVariant="white" className="ViewerHeader">
         <Modal.Title className="ViewerTitle">{file.name}</Modal.Title>
       </Modal.Header>
+
+      {/* Document */}
       <Modal.Body className="ViewerBody">
         <Document
           file={"../../../media/" + file.file_path}
@@ -71,7 +77,9 @@ export default function Viewer({ show, setShow, fullscreen, file }) {
         </Document>
       </Modal.Body>
 
+      {/* tools for navigation */}
       <Modal.Footer className="ViewerFooter">
+        {/* prev and next page buttons*/}
         <div style={{ width: "125px" }} className="Navig">
           <NavigButton onClick={prevPage}>
             <NavigateBeforeIcon sx={{ fontSize: 50 }} />
@@ -81,6 +89,7 @@ export default function Viewer({ show, setShow, fullscreen, file }) {
           </NavigButton>
         </div>
 
+        {/* seeking specific page*/}
         <div className="Navig">
           <input
             defaultValue={pageNumber}
@@ -90,6 +99,7 @@ export default function Viewer({ show, setShow, fullscreen, file }) {
           <div className="NavigLabel">of {numPages}</div>
         </div>
 
+        {/* zooming in and out the page*/}
         <div style={{ width: "190px" }} className="Navig">
           <NavigButton onClick={ZoomOutPage}>
             <ZoomOutIcon sx={{ fontSize: 30 }} />
@@ -102,6 +112,7 @@ export default function Viewer({ show, setShow, fullscreen, file }) {
           </NavigButton>
         </div>
 
+        {/* rotating the page*/}
         <div style={{ width: "125px" }} className="Navig">
           <NavigButton onClick={RotateLeft}>
             <RotateLeftOutlinedIcon sx={{ fontSize: 30 }} />
@@ -116,28 +127,12 @@ export default function Viewer({ show, setShow, fullscreen, file }) {
 }
 
 function NavigButton({ children, onClick }) {
+  {
+    /* navigation button*/
+  }
   return (
     <div className="NavigButton" onClick={onClick}>
       {children}
     </div>
   );
-}
-
-{
-  /*<Modal.Footer>
-  <Button variant="secondary" onClick={handleClose}>
-    Close
-  </Button>
-  <Button variant="primary" onClick={handleClose}>
-    Save Changes
-  </Button>
-</Modal.Footer>*/
-}
-{
-  /*<Document file={file_path} onLoadSuccess={onDocumentLoadSuccess}>
-  <Page pageNumber={pageNumber} />
-</Document> 
-<p>
-  Page {pageNumber} of {numPages}
-</p>*/
 }

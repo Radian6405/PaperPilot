@@ -1,0 +1,87 @@
+/* file viewer */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.ViewerHeader {
+  font-size: 20px;
+  background-color: var(--accent);
+}
+
+.close {
+  color: var(--background);
+  opacity: 1;
+}
+
+.ViewerTitle {
+  font-size: 35px;
+  padding-left: 20px;
+  background-color: inherit;
+  color: var(--background);
+}
+
+.ViewerBody {
+  display: flex;
+  justify-content: center;
+}
+
+.ViewerFooter {
+  display: flex;
+  justify-content: center;
+  height: 70px;
+  background-color: var(--accent);
+  padding: 5px;
+  gap: 10px;
+}
+
+.DocumentContainer {
+  box-shadow: 0px 0px 15px 1px lightgray;
+}
+
+.NavigButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 60px;
+  height: 50px;
+  border-radius: 3px;
+
+  color: var(--background);
+  background-color: var(--accent);
+}
+
+.NavigButton:hover {
+  cursor: pointer;
+  background-color: var(--primary);
+}
+
+.Navig {
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  border-left: 1px solid var(--accent-700);
+  border-right: 1px solid var(--accent-700);
+}
+
+.Navig input {
+  width: 35px;
+  height: 35px;
+  font-size: 20px;
+
+  padding-left: 5px;
+  margin-left: 5px;
+}
+
+.NavigLabel {
+  font-size: 20px;
+  color: var(--background);
+
+  padding-left: 5px;
+  margin-right: 5px;
+}

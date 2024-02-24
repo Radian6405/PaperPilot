@@ -1,0 +1,33 @@
+/* navbar*/
+.Navbar {
+  background-color: var(--accent);
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.Navbar a {
+  text-decoration: none;
+}
+
+.NavButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 80px;
+  height: 40px;
+  border-radius: 3px;
+
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--background);
+  text-transform: capitalize;
+}
+
+.NavButton:hover,
+.ActiveButton {
+  background-color: var(--primary);
+}

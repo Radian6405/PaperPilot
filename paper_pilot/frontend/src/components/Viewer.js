@@ -1,0 +1,143 @@
+import React, { Component, useState } from "react";
+import { Document, Page } from "react-pdf";
+import "react-pdf/dist/Page/AnnotationLayer.css";
+import "react-pdf/dist/Page/TextLayer.css";
+
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import ZoomInIcon from "@mui/icons-material/ZoomIn";
+import ZoomOutIcon from "@mui/icons-material/ZoomOut";
+import WidthFullIcon from "@mui/icons-material/WidthFull";
+import RotateLeftOutlinedIcon from "@mui/icons-material/RotateLeftOutlined";
+import RotateRightOutlinedIcon from "@mui/icons-material/RotateRightOutlined";
+
+export default function Viewer({ show, setShow, fullscreen, file }) {
+  const [numPages, setNumPages] = useState();
+  const [pageNumber, setPageNumber] = useState(1);
+  const [pageScale, setPageScale] = useState(1);
+  const [pageRotation, setPageRotation] = useState(0);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  function onDocumentLoadSuccess({ numPages }) {
+    setNumPages(numPages);
+  }
+  function prevPage() {
+    if (pageNumber > 1) setPageNumber(pageNumber - 1);
+  }
+  function nextPage() {
+    if (pageNumber < numPages) setPageNumber(pageNumber + 1);
+  }
+  function seekPage(event) {
+    const pageNo = parseInt(event.target.value);
+    if (1 <= pageNo && pageNo <= numPages) setPageNumber(pageNo);
+  }
+
+  function ZoomOutPage() {
+    if (pageScale > 0.3) setPageScale(pageScale - 0.3);
+  }
+  function ZoomInPage() {
+    if (pageScale < 10) setPageScale(pageScale + 0.3);
+  }
+
+  function RotateLeft() {
+    setPageRotation((pageRotation - 90 + 360) % 360);
+  }
+  function RotateRight() {
+    setPageRotation((pageRotation + 90) % 360);
+  }
+
+  return (
+    <Modal show={show} onHide={handleClose} fullscreen={fullscreen}>
+      <Modal.Header closeButton closeVariant="white" className="ViewerHeader">
+        <Modal.Title className="ViewerTitle">{file.name}</Modal.Title>
+      </Modal.Header>
+      <Modal.Body className="ViewerBody">
+        <Document
+          file={"../../../media/" + file.file_path}
+          onLoadSuccess={onDocumentLoadSuccess}
+        >
+          <Page
+            className="DocumentContainer"
+            pageNumber={pageNumber}
+            scale={pageScale}
+            width={window.innerWidth * 0.9}
+            rotate={pageRotation}
+          />
+        </Document>
+      </Modal.Body>
+
+      <Modal.Footer className="ViewerFooter">
+        <div style={{ width: "125px" }} className="Navig">
+          <NavigButton onClick={prevPage}>
+            <NavigateBeforeIcon sx={{ fontSize: 50 }} />
+          </NavigButton>
+          <NavigButton onClick={nextPage}>
+            <NavigateNextIcon sx={{ fontSize: 50 }} />
+          </NavigButton>
+        </div>
+
+        <div className="Navig">
+          <input
+            defaultValue={pageNumber}
+            type="number"
+            onChange={(evt) => seekPage(evt)}
+          />
+          <div className="NavigLabel">of {numPages}</div>
+        </div>
+
+        <div style={{ width: "190px" }} className="Navig">
+          <NavigButton onClick={ZoomOutPage}>
+            <ZoomOutIcon sx={{ fontSize: 30 }} />
+          </NavigButton>
+          <NavigButton onClick={ZoomInPage}>
+            <ZoomInIcon sx={{ fontSize: 30 }} />
+          </NavigButton>
+          <NavigButton onClick={() => setPageScale(1)}>
+            <WidthFullIcon sx={{ fontSize: 30 }} />
+          </NavigButton>
+        </div>
+
+        <div style={{ width: "125px" }} className="Navig">
+          <NavigButton onClick={RotateLeft}>
+            <RotateLeftOutlinedIcon sx={{ fontSize: 30 }} />
+          </NavigButton>
+          <NavigButton onClick={RotateRight}>
+            <RotateRightOutlinedIcon sx={{ fontSize: 30 }} />
+          </NavigButton>
+        </div>
+      </Modal.Footer>
+    </Modal>
+  );
+}
+
+function NavigButton({ children, onClick }) {
+  return (
+    <div className="NavigButton" onClick={onClick}>
+      {children}
+    </div>
+  );
+}
+
+{
+  /*<Modal.Footer>
+  <Button variant="secondary" onClick={handleClose}>
+    Close
+  </Button>
+  <Button variant="primary" onClick={handleClose}>
+    Save Changes
+  </Button>
+</Modal.Footer>*/
+}
+{
+  /*<Document file={file_path} onLoadSuccess={onDocumentLoadSuccess}>
+  <Page pageNumber={pageNumber} />
+</Document> 
+<p>
+  Page {pageNumber} of {numPages}
+</p>*/
+}

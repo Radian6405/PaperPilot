@@ -26,7 +26,7 @@ export default class App extends Component {
         <>
           <Navbar />
 
-          <div className="container">
+          <div className="pageContainer">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/upload" element={<Upload />} />

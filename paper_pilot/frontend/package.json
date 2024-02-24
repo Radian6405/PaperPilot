@@ -27,9 +27,12 @@
     "@babel/plugin-transform-class-properties": "^7.23.3",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.10",
     "@mui/material": "^5.15.10",
+    "bootstrap": "^5.3.3",
     "css-loader": "^6.10.0",
     "instead": "^1.0.3",
+    "react-bootstrap": "^2.10.1",
     "react-pdf": "^7.7.1",
     "react-router-dom": "^6.22.1",
     "style-loader": "^3.3.4"

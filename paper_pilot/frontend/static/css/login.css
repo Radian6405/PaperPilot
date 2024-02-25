@@ -5,6 +5,8 @@
   align-items: center;
   justify-content: center;
 }
+
+/*main block*/
 .LoginBlock {
   width: 50%;
   min-width: 400px;
@@ -17,6 +19,7 @@
   background-color: var(--accent-800);
 }
 
+/*form*/
 .LoginForm {
   height: 300px;
   text-align: center;
@@ -26,6 +29,7 @@
   outline: none;
 }
 
+/*username and password*/
 .LoginForm input[type="text"],
 .LoginForm input[type="password"] {
   width: 70%;
@@ -40,6 +44,7 @@
   position: relative;
 }
 
+/*submit button*/
 .LoginForm input[type="submit"] {
   border: 0px;
   border-radius: 3px;
@@ -54,6 +59,7 @@
   color: var(--background);
 }
 
+/*helper label*/
 .LoginForm p {
   font-size: 16px;
   color: var(--background);

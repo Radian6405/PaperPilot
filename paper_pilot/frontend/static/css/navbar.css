@@ -4,8 +4,15 @@
   height: 80px;
   display: flex;
   align-items: center;
+}
+
+.NavBlock {
+  display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 1rem;
+
+  gap: 10px;
+  height: 80px;
 }
 
 .Navbar a {

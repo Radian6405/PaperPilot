@@ -24,7 +24,7 @@ export default function Login() {
               />
               <br />
               <PasswordField name={"password"} placeholder={"Password"} />
-              <SubmitField />
+              <SubmitField text={"Login"}/>
               <HelperLabel
                 text={"If you dont have an account "}
                 to={"/api/register/"}

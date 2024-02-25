@@ -46,7 +46,7 @@ export default function Upload() {
                 <VisuallyHiddenInput type="file" name="file" />
               </Button>
               <br />
-              <SubmitField />
+              <SubmitField text={"Confirm"} />
               <HelperLabel text={"Upload any .pdf file here"} />
             </form>
           </div>

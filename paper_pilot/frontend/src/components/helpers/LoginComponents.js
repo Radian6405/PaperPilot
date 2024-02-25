@@ -59,6 +59,6 @@ export function HelperLabel({ text, to, toText }) {
   );
 }
 
-export function SubmitField() {
-  return <input type="submit" />;
+export function SubmitField({text}) {
+  return <input type="submit" value={text} />;
 }

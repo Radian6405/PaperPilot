@@ -40,7 +40,8 @@ def login_view(request):
     return render(request, 'frontend/index.html')
 
 def logout_view(request):
-    logout(request)
+    if request.method == "POST":
+        logout(request)
     return HttpResponseRedirect("/")
 
 def register_view(request):

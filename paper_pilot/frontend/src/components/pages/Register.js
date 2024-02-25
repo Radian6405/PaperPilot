@@ -26,7 +26,6 @@ export default function Register() {
               <TextField
                 name={"email"}
                 placeholder={"Email address"}
-                autoFocus={"on"}
               />
               <br />
               <PasswordField name={"password"} placeholder={"Password"} />

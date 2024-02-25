@@ -64,3 +64,11 @@
   font-size: 16px;
   color: var(--background);
 }
+
+/*Upload text*/
+.UploadLabel {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 36px;
+  font-weight: bold;
+  color: var(--background);
+}

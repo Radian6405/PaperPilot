@@ -1,0 +1,60 @@
+/* login, register, logout pages */
+.LoginContainer,
+.PasswordContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.LoginBlock {
+  width: 50%;
+  min-width: 400px;
+  max-width: 500px;
+  height: 600px;
+  margin: 40px;
+
+  text-align: center;
+  border-radius: 5px;
+  background-color: var(--accent-800);
+}
+
+.LoginForm {
+  height: 300px;
+  text-align: center;
+  padding: 10px;
+}
+.LoginForm input:focus {
+  outline: none;
+}
+
+.LoginForm input[type="text"],
+.LoginForm input[type="password"] {
+  width: 70%;
+  max-width: 400px;
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  font-size: 20px;
+}
+.PasswordContainer {
+  position: relative;
+}
+
+.LoginForm input[type="submit"] {
+  border: 0px;
+  border-radius: 3px;
+
+  width: 140px;
+  height: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  font-size: 22px;
+  background-color: var(--primary);
+  color: var(--background);
+}
+
+.LoginForm p {
+  font-size: 16px;
+  color: var(--background);
+}

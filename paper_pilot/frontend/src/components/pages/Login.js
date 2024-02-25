@@ -1,32 +1,35 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
+import logo from "../../../static/images/logo 512.png";
+import CSRFtoken from "../CSRFtoken";
+import { TextField, PasswordField, SubmitField, HelperLabel } from "./LoginHelpers";
 
 export default function Login() {
-  var csrftoken = getCookie("csrftoken");
   return (
     <>
-      <form action="/api/login/" method="post">
-        <input type="hidden" name="csrfmiddlewaretoken" value={csrftoken} />
-        
-        <input type="text" name="username" placeholder="Username" />
-        <input type="password" name="password" placeholder="Password" />
-        <input type="submit" />
-      </form>
+      <div className="LoginContainer">
+        <div className="LoginBlock">
+          <img src={logo} width={"300px"} height={"300px"} alt="img" />
+
+          <div className="LoginForm">
+            <form action="/api/login/" method="post">
+              <CSRFtoken />
+              <TextField
+                name={"username"}
+                placeholder={"Username"}
+                autoFocus={"on"}
+              />
+              <br />
+              <PasswordField name={"password"} placeholder={"Password"} />
+              <SubmitField />
+              <HelperLabel
+                text={"If you dont have an account"}
+                to={"/api/register/"}
+                toText={"Register"}
+              />
+            </form>
+          </div>
+        </div>
+      </div>
     </>
   );
-}
-
-function getCookie(name) {
-  let cookieValue = null;
-  if (document.cookie && document.cookie !== "") {
-    const cookies = document.cookie.split(";");
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      // Does this cookie string begin with the name we want?
-      if (cookie.substring(0, name.length + 1) === name + "=") {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
-      }
-    }
-  }
-  return cookieValue;
 }

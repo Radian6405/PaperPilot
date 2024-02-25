@@ -1,7 +1,12 @@
 import React, { Component, useState, useEffect } from "react";
 import logo from "../../../static/images/logo 512.png";
-import CSRFtoken from "../CSRFtoken";
-import { TextField, PasswordField, SubmitField, HelperLabel } from "./LoginHelpers";
+import CSRFtoken from "../helpers/CSRFtoken";
+import {
+  TextField,
+  PasswordField,
+  SubmitField,
+  HelperLabel,
+} from "../helpers/LoginComponents";
 
 export default function Login() {
   return (

@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from "react";
-import FileCard from "../FileCard";
+import FileCard from "../viewers/FileCard";
 
 export default function Home() {
   const [filePaths, setFilePaths] = useState([]);

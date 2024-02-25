@@ -2,6 +2,7 @@ import React, { Component, useState, useEffect } from "react";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 
 import logo from "../../static/images/logo 512.png";
+import NavButton from "./helpers/NavButton";
 
 export default function Navbar() {
   const [user, setUser] = useState("Login");
@@ -22,35 +23,23 @@ export default function Navbar() {
       </div>
 
       <div style={{ width: "60%" }} className="NavBlock">
-        <CustomButton to="/">Home</CustomButton>
-        <CustomButton to="/upload/">Upload</CustomButton>
+        <NavButton to="/">Home</NavButton>
+        <NavButton to="/upload/">Upload</NavButton>
       </div>
 
       <div style={{ width: "20%" }} className="NavBlock">
         {user.username === "" ? (
           <>
-            <CustomButton to="/api/login/">Login</CustomButton>
-            <CustomButton to="/api/register/">Register</CustomButton>
+            <NavButton to="/api/login/">Login</NavButton>
+            <NavButton to="/api/register/">Register</NavButton>
           </>
         ) : (
           <>
-            <CustomButton to="/api/logout/">Logout</CustomButton>
+            <NavButton to="/api/logout/">Logout</NavButton>
             <div className="NavButton ActiveButton">{user.username}</div>
           </>
         )}
       </div>
     </div>
-  );
-}
-
-function CustomButton({ to, children, ...props }) {
-  const resolvedPath = useResolvedPath(to);
-  const isActive = useMatch({ path: resolvedPath.pathname, end: true });
-  return (
-    <Link to={to} {...props}>
-      <div className={isActive ? "NavButton ActiveButton" : "NavButton"}>
-        {children}
-      </div>
-    </Link>
   );
 }

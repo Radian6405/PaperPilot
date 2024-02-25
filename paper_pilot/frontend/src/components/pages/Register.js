@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CSRFtoken from "../CSRFtoken";
+import CSRFtoken from "../helpers/CSRFtoken";
 
 export default function Register() {
   return (

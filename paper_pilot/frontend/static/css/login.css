@@ -11,12 +11,19 @@
   width: 50%;
   min-width: 400px;
   max-width: 500px;
-  height: 600px;
+  height: 640px;
   margin: 40px;
 
   text-align: center;
   border-radius: 5px;
   background-color: var(--accent-800);
+}
+
+.LoginBlock h1 {
+  color: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 36px;
+  font-weight: bold;
 }
 
 /*form*/
@@ -71,4 +78,62 @@
   font-size: 36px;
   font-weight: bold;
   color: var(--background);
+}
+
+/*Get started*/
+.StartedBlock {
+  width: 80%;
+  margin: 20px;
+  min-height: 600px;
+
+  text-align: center;
+  border-radius: 5px;
+}
+
+.StartedBlock h1 {
+  font-size: 64px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: var(--text);
+}
+.StartedBlock a {
+  font-size: 64px;
+  text-decoration: none;
+}
+
+.StartedDesc {
+  color: var(--accent-700);
+  font-size: 24px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+
+  padding: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  max-width: 500px;
+  text-align: center;
+}
+
+.StartedButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 160px;
+  height: 60px;
+  border-radius: 3px;
+  margin-left: auto;
+  margin-right: auto;
+
+  font-size: 24px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: var(--primary);
+  background-color: var(--accent);
+
+  text-transform: capitalize;
+}
+
+.StartedButton:hover {
+  background-color: var(--primary);
+  color: var(--accent);
 }

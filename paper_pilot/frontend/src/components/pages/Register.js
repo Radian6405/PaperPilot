@@ -12,8 +12,9 @@ export default function Register() {
   return (
     <>
       <div className="LoginContainer">
-        <div className="LoginBlock" style={{ height: "720px" }}>
+        <div className="LoginBlock" style={{ height: "760px" }}>
           <img src={logo} width={"300px"} height={"300px"} alt="img" />
+          <h1>Register</h1>
           <div className="LoginForm">
             <form action="/api/register/" method="post">
               <CSRFtoken />
@@ -23,10 +24,7 @@ export default function Register() {
                 autoFocus={"on"}
               />
               <br />
-              <TextField
-                name={"email"}
-                placeholder={"Email address"}
-              />
+              <TextField name={"email"} placeholder={"Email address"} />
               <br />
               <PasswordField name={"password"} placeholder={"Password"} />
               <PasswordField

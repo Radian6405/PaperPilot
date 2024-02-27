@@ -14,6 +14,7 @@ export default function Login() {
       <div className="LoginContainer">
         <div className="LoginBlock">
           <img src={logo} width={"300px"} height={"300px"} alt="img" />
+          <h1>Login</h1>
           <div className="LoginForm">
             <form action="/api/login/" method="post">
               <CSRFtoken />
@@ -24,7 +25,7 @@ export default function Login() {
               />
               <br />
               <PasswordField name={"password"} placeholder={"Password"} />
-              <SubmitField text={"Login"}/>
+              <SubmitField text={"Login"} />
               <HelperLabel
                 text={"If you dont have an account "}
                 to={"/api/register/"}

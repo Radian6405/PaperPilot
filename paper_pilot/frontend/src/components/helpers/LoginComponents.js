@@ -5,7 +5,7 @@ import Checkbox from "@mui/material/Checkbox";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
-export function TextField({ name, placeholder, autoFocus }) {
+export function TextField({ name, placeholder, autoFocus, value, setValue }) {
   return (
     <input
       type="text"
@@ -13,12 +13,13 @@ export function TextField({ name, placeholder, autoFocus }) {
       autoFocus={autoFocus}
       placeholder={placeholder}
       autoComplete="off"
+      value={value}
+      onChange={e => setValue(e.target.value)}
     />
   );
 }
 
-export function PasswordField({ name, placeholder }) {
-  const [password, setPassword] = useState("");
+export function PasswordField({ name, placeholder, password, setPassword }) {
   const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="PasswordContainer">

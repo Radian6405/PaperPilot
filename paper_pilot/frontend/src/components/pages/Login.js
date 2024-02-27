@@ -7,8 +7,23 @@ import {
   SubmitField,
   HelperLabel,
 } from "../helpers/LoginComponents";
+import Alert from "@mui/material/Alert";
 
 export default function Login() {
+  const [password, setPassword] = useState("");
+  const [alertMsg, setAlertMsg] = useState("");
+  const [username, setUsername] = useState("");
+
+  function handleFormValidation(event) {
+    if (username === "") {
+      event.preventDefault();
+      setAlertMsg("Username cannot be empty");
+    } else if (password === "") {
+      event.preventDefault();
+      setAlertMsg("Password cannot be empty");
+    }
+  }
+
   return (
     <>
       <div className="LoginContainer">
@@ -16,15 +31,26 @@ export default function Login() {
           <img src={logo} width={"300px"} height={"300px"} alt="img" />
           <h1>Login</h1>
           <div className="LoginForm">
-            <form action="/api/login/" method="post">
+            <form
+              action="/api/login/"
+              method="post"
+              onSubmit={(event) => handleFormValidation(event)}
+            >
               <CSRFtoken />
               <TextField
                 name={"username"}
                 placeholder={"Username"}
                 autoFocus={"on"}
+                value={username}
+                setValue={setUsername}
               />
               <br />
-              <PasswordField name={"password"} placeholder={"Password"} />
+              <PasswordField
+                name={"password"}
+                placeholder={"Password"}
+                password={password}
+                setPassword={setPassword}
+              />
               <SubmitField text={"Login"} />
               <HelperLabel
                 text={"If you dont have an account "}
@@ -34,6 +60,20 @@ export default function Login() {
             </form>
           </div>
         </div>
+      </div>
+      <div style={{ position: "absolute", top: 120, right: 120 }}>
+        {alertMsg !== "" && (
+          <Alert
+            variant="filled"
+            severity="error"
+            onClose={() => {
+              setAlertMsg("");
+            }}
+            style={{ fontSize: "20px" }}
+          >
+            {alertMsg}
+          </Alert>
+        )}
       </div>
     </>
   );

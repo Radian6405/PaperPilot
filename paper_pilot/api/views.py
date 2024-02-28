@@ -56,7 +56,7 @@ def register_view(request):
         except IntegrityError:
             return HttpResponseRedirect("/api/login/")
         login(request, user)
-        return HttpResponseRedirect("/")
+        return HttpResponseRedirect("/upload/")
 
     return render(request, 'frontend/index.html')
 

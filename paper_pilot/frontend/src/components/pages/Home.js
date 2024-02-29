@@ -1,9 +1,12 @@
 import React, { Component, useState, useEffect } from "react";
 import FileCard from "../viewers/FileCard";
 import GetStarted from "./GetStarted";
+import FolderCard from "../viewers/FolderCard";
+import { Card } from "react-bootstrap";
 
 export default function Home() {
   const [filePaths, setFilePaths] = useState([]);
+  const [folderList, setFolderList] = useState([]);
   const [user, setUser] = useState("Login");
   const fetchUser = () => {
     return fetch("/api/getuser/")
@@ -23,6 +26,15 @@ export default function Home() {
     fetchPDFs();
   }, []);
 
+  const fetchFolders = () => {
+    return fetch("/api/getfolders/")
+      .then((res) => res.json())
+      .then((d) => setFolderList(d));
+  };
+  useEffect(() => {
+    fetchFolders();
+  }, []);
+
   function loadFileThumbnails(file) {
     return (
       <FileCard
@@ -32,6 +44,9 @@ export default function Home() {
       />
     );
   }
+  function loadFolders(folder_obj) {
+    return <FolderCard key={crypto.randomUUID()} folder_obj={folder_obj} />;
+  }
 
   return (
     <>
@@ -39,11 +54,23 @@ export default function Home() {
         <GetStarted />
       ) : (
         <div className="container">
-          <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 ">
-            {filePaths.map(loadFileThumbnails)}
-          </div>
+          <div className="SplitBar"></div>
+
+          <CardRow>{folderList.map(loadFolders)}</CardRow>
+
+          <div className="SplitBar"></div>
+
+          <CardRow>{filePaths.map(loadFileThumbnails)}</CardRow>
         </div>
       )}
     </>
+  );
+}
+
+export function CardRow({ children }) {
+  return (
+    <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 ">
+      {children}
+    </div>
   );
 }

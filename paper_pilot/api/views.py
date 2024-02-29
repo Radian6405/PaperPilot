@@ -14,11 +14,27 @@ def get_user(request):
     return JsonResponse(serializer.data)
 
 def get_pdfs(request):
-    fileList = Files.objects.filter(user=request.user.id).values()
+    currentUser = request.user
+    fileList = currentUser.Files.all().values()
     serializer = pdfSerializer(fileList, many=True)
 
     return JsonResponse(serializer.data, safe=False)
 
+def get_folders(request):
+    currentUser = request.user
+    folderList = currentUser.Folders.all().values()
+    serializer = folderSerializer(folderList, many=True)
+
+    return JsonResponse(serializer.data, safe=False)
+
+def access_folder(request, fldr_id):
+    folder = Folders.objects.get(pk=fldr_id)
+    if (folder.user == request.user):
+        fileList = folder.Files.all().values()
+        serializer = pdfSerializer(fileList, many=True)
+
+        return JsonResponse(serializer.data, safe=False)
+    
 # user authentication views
 def index(request):
     return HttpResponse("<h1>hi</h1>")

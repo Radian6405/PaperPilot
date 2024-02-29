@@ -15,3 +15,8 @@ class pdfSerializer(serializers.ModelSerializer):
     class Meta:
         model = Files
         fields = ['name', 'file_path']
+
+class folderSerializer(serializers.ModelSerializer):
+    class Meta:
+      model = Folders
+      fields = ['id', 'name']

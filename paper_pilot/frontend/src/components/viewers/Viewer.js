@@ -126,12 +126,12 @@ export default function Viewer({ show, setShow, fullscreen, file }) {
   );
 }
 
-function NavigButton({ children, onClick }) {
+export function NavigButton({ children, onClick, ...props }) {
   {
     /* navigation button*/
   }
   return (
-    <div className="NavigButton" onClick={onClick}>
+    <div {...props} className="NavigButton" onClick={onClick}>
       {children}
     </div>
   );

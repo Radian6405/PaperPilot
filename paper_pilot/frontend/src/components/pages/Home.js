@@ -54,10 +54,12 @@ export default function Home() {
         <GetStarted />
       ) : (
         <div className="container">
+          <h1>Folders</h1>
           <div className="SplitBar"></div>
 
           <CardRow>{folderList.map(loadFolders)}</CardRow>
 
+          <h1>Files</h1>
           <div className="SplitBar"></div>
 
           <CardRow>{filePaths.map(loadFileThumbnails)}</CardRow>

@@ -6,7 +6,7 @@ PaperPilot is a PDF organiser designed to manage all your important files in one
 ## How it works
 
 1. Start by logging in
-![image](https://github.com/Radian6405/PaperPilot/assets/99524343/3fe188a6-b084-4856-9efe-e72b501baf5e)
+![[<img src="https://github.com/Radian6405/PaperPilot/assets/99524343/3fe188a6-b084-4856-9efe-e72b501baf5e" width="250"/>]](https://github.com/Radian6405/PaperPilot/assets/99524343/3fe188a6-b084-4856-9efe-e72b501baf5e)
 
 2. Then upload your files 
 ![image](https://github.com/Radian6405/PaperPilot/assets/99524343/13089872-e66f-4ef0-8ef2-54a57145984c)

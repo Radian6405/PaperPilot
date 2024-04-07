@@ -21,13 +21,13 @@ module.exports = {
         test: /\.(png|svg|jpg|gif|pdf)$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              name: '[name].[ext]'
-            }
-          }
-        ]
-      }
+              name: "[name].[ext]",
+            },
+          },
+        ],
+      },
     ],
   },
   optimization: {
@@ -35,10 +35,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      "process.env": {
-        // This has effect on the react lib size
-        NODE_ENV: JSON.stringify("devolopment"),
-      },
+      "process.env.NODE_ENV": JSON.stringify("development"),
     }),
   ],
 };

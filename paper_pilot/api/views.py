@@ -1,3 +1,5 @@
+import json
+
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -34,7 +36,23 @@ def access_folder(request, fldr_id):
         serializer = pdfSerializer(fileList, many=True)
 
         return JsonResponse(serializer.data, safe=False)
-    
+
+def delete(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        filetype = data["datatype"]
+        filedata = data["data"]
+
+        if filetype == "file":
+            file = Files.objects.get(id=filedata["id"])
+            file.delete()
+            
+            
+        
+    return HttpResponseRedirect("/")
+
+
+
 # user authentication views
 def index(request):
     return HttpResponse("<h1>hi</h1>")

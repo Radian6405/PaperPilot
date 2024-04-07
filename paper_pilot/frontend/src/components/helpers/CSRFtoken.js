@@ -5,7 +5,7 @@ export default function CSRFtoken() {
   return <input type="hidden" name="csrfmiddlewaretoken" value={csrftoken} />;
 }
 
-function getCookie(name) {
+export function getCookie(name) {
   let cookieValue = null;
   if (document.cookie && document.cookie !== "") {
     const cookies = document.cookie.split(";");

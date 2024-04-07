@@ -35,14 +35,8 @@ export default function Home() {
     fetchFolders();
   }, []);
 
-  function loadFileThumbnails(file) {
-    return (
-      <FileCard
-        key={crypto.randomUUID()}
-        img_path={"../../../static/download.png"}
-        file_obj={file}
-      />
-    );
+  function loadFiles(file) {
+    return <FileCard key={crypto.randomUUID()} file_obj={file} />;
   }
   function loadFolders(folder_obj) {
     return <FolderCard key={crypto.randomUUID()} folder_obj={folder_obj} />;
@@ -54,15 +48,15 @@ export default function Home() {
         <GetStarted />
       ) : (
         <div className="container">
-          <h1>Folders</h1>
+          <h1 style={{ marginTop: "20px" }}>Folders</h1>
           <div className="SplitBar"></div>
 
           <CardRow>{folderList.map(loadFolders)}</CardRow>
 
-          <h1>Files</h1>
+          <h1 style={{ marginTop: "20px" }}>Files</h1>
           <div className="SplitBar"></div>
 
-          <CardRow>{filePaths.map(loadFileThumbnails)}</CardRow>
+          <CardRow>{filePaths.map(loadFiles)}</CardRow>
         </div>
       )}
     </>

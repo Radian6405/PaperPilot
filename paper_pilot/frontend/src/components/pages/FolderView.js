@@ -2,7 +2,6 @@ import React, { Component, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { CardRow } from "./Home";
 import FileCard from "../viewers/FileCard";
-import NavButton from "../helpers/NavButton";
 import { NavigButton } from "../viewers/Viewer";
 
 export default function FolderView() {

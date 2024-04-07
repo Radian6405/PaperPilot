@@ -4,7 +4,7 @@ from .models import *
 class userSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username']
+        fields = ['id', 'username']
 
 class pdfSerializer(serializers.ModelSerializer):
     file_path = serializers.SerializerMethodField('filePath')
@@ -14,7 +14,7 @@ class pdfSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Files
-        fields = ['name', 'file_path']
+        fields = ['id', 'name', 'file_path']
 
 class folderSerializer(serializers.ModelSerializer):
     class Meta:

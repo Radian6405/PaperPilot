@@ -41,10 +41,10 @@ export default function Viewer({ show, setShow, fullscreen, file }) {
   }
 
   function ZoomOutPage() {
-    if (pageScale > 0.3) setPageScale(pageScale - 0.3);
+    if (pageScale > 0.3) setPageScale(Math.round(pageScale * 0.7 * 10) / 10);
   }
   function ZoomInPage() {
-    if (pageScale < 10) setPageScale(pageScale + 0.3);
+    if (pageScale < 10) setPageScale(Math.round(pageScale * 1.4 * 10) / 10);
   }
 
   function RotateLeft() {
@@ -92,7 +92,7 @@ export default function Viewer({ show, setShow, fullscreen, file }) {
         {/* seeking specific page*/}
         <div className="Navig">
           <input
-            defaultValue={pageNumber}
+            value={pageNumber}
             type="number"
             onChange={(evt) => seekPage(evt)}
           />

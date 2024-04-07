@@ -31,10 +31,12 @@
   width: 230px;
   background-color: var(--background);
   border-radius: 7px;
+  overflow: hidden;
 }
 .card-img-botom {
   width: inherit;
   border-radius: inherit;
+  overflow: hidden;
 }
 
 .card-body {

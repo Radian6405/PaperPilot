@@ -1,4 +1,5 @@
 import React, { Component, useState } from "react";
+import { Document, Page } from "react-pdf";
 
 import InsertDriveFileOutlinedIcon from "@mui/icons-material/InsertDriveFileOutlined";
 import Viewer from "./Viewer";
@@ -20,7 +21,14 @@ export default function FileCard({ img_path, file_obj }) {
             <div className="card-title">{file_obj.name}</div>
           </div>
           <div className="img-container">
-            <img src={img_path} className="card-img-bottom" alt="No Img" />
+            <Document file={"../../../media/" + file_obj.file_path}>
+              <Page
+                className="card-img-bottom"
+                pageNumber={1}
+                scale={1}
+                height={250}
+              />
+            </Document>
           </div>
         </div>
       </div>

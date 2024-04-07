@@ -46,6 +46,9 @@ def delete(request):
         if filetype == "file":
             file = Files.objects.get(id=filedata["id"])
             file.delete()
+        if filetype == "folder":
+            file = Folders.objects.get(id=filedata["id"])
+            file.delete()
             
             
         

@@ -13,9 +13,9 @@ import { getCookie } from "../helpers/CSRFtoken";
 export default function FileCard({ file_obj }) {
   const [show, setShow] = useState(false);
   const [fullscreen, setFullscreen] = useState(true);
+
   const [showMenu, setShowMenu] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
-
   const [showPopup, setShowPopUp] = useState(false);
 
   const handleShow = (breakpoint) => {
@@ -101,16 +101,17 @@ export default function FileCard({ file_obj }) {
         show={showPopup}
         file={file_obj}
         onHide={() => setShowPopUp(false)}
-        onConfirm={() => {
+        success={() => {
           setShowPopUp(false);
           handleDelete(file_obj, "file");
+          return "";
         }}
       />
     </>
   );
 }
 
-function MenuItem({ OnClick, children }) {
+export function MenuItem({ OnClick, children }) {
   return (
     <div className="moreMenuItem" onClick={OnClick}>
       {children}
@@ -118,9 +119,9 @@ function MenuItem({ OnClick, children }) {
   );
 }
 
-function ConfirmationPopup(props) {
+export function ConfirmationPopup(props) {
   return (
-    <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
+    <Modal show={props.show} onHide={props.onHide} aria-labelledby="contained-modal-title-vcenter" centered>
       <Modal.Header
         style={{
           backgroundColor: "var(--accent)",
@@ -153,7 +154,7 @@ function ConfirmationPopup(props) {
             margin: "10px",
             backgroundColor: "var(--primary)",
           }}
-          onClick={props.onConfirm}
+          onClick={props.success}
         >
           Delete file
         </NavigButton>

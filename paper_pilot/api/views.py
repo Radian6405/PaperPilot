@@ -1,3 +1,5 @@
+import json
+
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -14,10 +16,67 @@ def get_user(request):
     return JsonResponse(serializer.data)
 
 def get_pdfs(request):
-    fileList = Files.objects.filter(user=request.user.id).values()
+    currentUser = request.user
+    fileList = currentUser.Files.filter(folder=None).values()
     serializer = pdfSerializer(fileList, many=True)
 
     return JsonResponse(serializer.data, safe=False)
+
+def get_folders(request):
+    currentUser = request.user
+    folderList = currentUser.Folders.all().values()
+    serializer = folderSerializer(folderList, many=True)
+
+    return JsonResponse(serializer.data, safe=False)
+
+def access_folder(request, fldr_id):
+    folder = Folders.objects.get(pk=fldr_id)
+    if (folder.user == request.user):
+        fileList = folder.Files.all().values()
+        serializer = pdfSerializer(fileList, many=True)
+
+        return JsonResponse(serializer.data, safe=False)
+
+def delete(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        filetype = data["datatype"]
+        filedata = data["data"]
+
+        if filetype == "file":
+            file = Files.objects.get(id=filedata["id"])
+            file.delete()
+        if filetype == "folder":
+            file = Folders.objects.get(id=filedata["id"])
+            file.delete()
+
+    return HttpResponseRedirect("/")
+
+def create_folder(request):
+    if request.method =="POST":
+        name = request.POST["foldername"]
+
+        folder = Folders(name=name, user=request.user)
+        folder.save()
+
+        return HttpResponseRedirect("/")
+    return HttpResponseRedirect("/")
+
+def change_folder(request):
+    if request.method =="POST":
+        data = json.loads(request.body) 
+
+        file = Files.objects.get(id=data["file"])
+        
+        if data["folder"] != -1:
+            folder = Folders.objects.get(id=data["folder"])
+        else:
+            folder = None
+
+        file.folder = folder
+        file.save()
+
+    return HttpResponseRedirect("/")
 
 # user authentication views
 def index(request):
@@ -56,7 +115,7 @@ def register_view(request):
         except IntegrityError:
             return HttpResponseRedirect("/api/login/")
         login(request, user)
-        return HttpResponseRedirect("/")
+        return HttpResponseRedirect("/upload/")
 
     return render(request, 'frontend/index.html')
 

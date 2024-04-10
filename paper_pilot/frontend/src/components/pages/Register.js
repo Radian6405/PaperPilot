@@ -38,7 +38,7 @@ export default function Register() {
       <div className="LoginContainer">
         <div className="LoginBlock" style={{ height: "760px" }}>
           <img src={logo} width={"300px"} height={"300px"} alt="img" />
-          <h1>Register</h1>
+          <div className="LoginLabel">Register</div>
           <div className="LoginForm">
             <form
               action="/api/register/"
@@ -53,14 +53,12 @@ export default function Register() {
                 value={username}
                 setValue={setUsername}
               />
-              <br />
               <TextField
                 name={"email"}
                 placeholder={"Email address"}
                 value={email}
                 setValue={setEmail}
               />
-              <br />
               <PasswordField
                 name={"password"}
                 placeholder={"Password"}

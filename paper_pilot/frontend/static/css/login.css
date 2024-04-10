@@ -1,25 +1,29 @@
 /* login, register, logout pages */
-.LoginContainer,
-.PasswordContainer {
+.LoginContainer {
   display: flex;
-  align-items: center;
   justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 40px;
+  margin-top: 40px;
 }
 
 /*main block*/
 .LoginBlock {
-  width: 50%;
-  min-width: 400px;
-  max-width: 500px;
-  height: 640px;
-  margin: 40px;
+  padding-left: 100px;
+  padding-right: 100px;
 
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
   border-radius: 5px;
   background-color: var(--accent-800);
 }
 
-.LoginBlock h1 {
+.LoginLabel {
+  text-align: center;
   color: var(--background);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 36px;
@@ -27,10 +31,14 @@
 }
 
 /*form*/
-.LoginForm {
-  height: 300px;
-  text-align: center;
+.LoginForm form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
   padding: 10px;
+  gap: 16px;
 }
 .LoginForm input:focus {
   outline: none;
@@ -39,16 +47,12 @@
 /*username and password*/
 .LoginForm input[type="text"],
 .LoginForm input[type="password"] {
-  width: 70%;
-  max-width: 400px;
-  height: 40px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-
   font-size: 20px;
 }
 .PasswordContainer {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 /*submit button*/
@@ -69,14 +73,6 @@
 /*helper label*/
 .LoginForm p {
   font-size: 16px;
-  color: var(--background);
-}
-
-/*Upload text*/
-.UploadLabel {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 36px;
-  font-weight: bold;
   color: var(--background);
 }
 

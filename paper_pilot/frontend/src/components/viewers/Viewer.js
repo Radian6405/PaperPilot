@@ -4,7 +4,6 @@ import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 
 import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
 
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
@@ -41,10 +40,10 @@ export default function Viewer({ show, setShow, fullscreen, file }) {
   }
 
   function ZoomOutPage() {
-    if (pageScale > 0.3) setPageScale(pageScale - 0.3);
+    if (pageScale > 0.3) setPageScale(Math.round(pageScale * 0.7 * 10) / 10);
   }
   function ZoomInPage() {
-    if (pageScale < 10) setPageScale(pageScale + 0.3);
+    if (pageScale < 10) setPageScale(Math.round(pageScale * 1.4 * 10) / 10);
   }
 
   function RotateLeft() {
@@ -92,7 +91,7 @@ export default function Viewer({ show, setShow, fullscreen, file }) {
         {/* seeking specific page*/}
         <div className="Navig">
           <input
-            defaultValue={pageNumber}
+            value={pageNumber}
             type="number"
             onChange={(evt) => seekPage(evt)}
           />
@@ -126,12 +125,12 @@ export default function Viewer({ show, setShow, fullscreen, file }) {
   );
 }
 
-function NavigButton({ children, onClick }) {
+export function NavigButton({ children, onClick, ...props }) {
   {
     /* navigation button*/
   }
   return (
-    <div className="NavigButton" onClick={onClick}>
+    <div {...props} className="NavigButton" onClick={onClick}>
       {children}
     </div>
   );

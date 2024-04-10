@@ -9,6 +9,7 @@ import Upload from "./pages/Upload";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 import Register from "./pages/Register";
+import FolderView from "./pages/FolderView";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.js",
@@ -33,9 +34,9 @@ export default class App extends Component {
               <Route path="/api/login" element={<Login />} />
               <Route path="/api/logout" element={<Logout />} />
               <Route path="/api/register" element={<Register />} />
+              <Route path="/folder/:fldr_id" element={<FolderView />} />
             </Routes>
           </div>
-          
         </>
       </BrowserRouter>
     );

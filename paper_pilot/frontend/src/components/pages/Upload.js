@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CSRFtoken from "../helpers/CSRFtoken";
 import {
-  TextField,
+  BasicTextField,
   PasswordField,
   SubmitField,
   HelperLabel,
@@ -11,11 +11,13 @@ import Button from "@mui/material/Button";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { styled } from "@mui/material/styles";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
+import CreateNewFolderOutlinedIcon from "@mui/icons-material/CreateNewFolderOutlined";
 
 export default function Upload() {
   return (
     <>
       <div className="LoginContainer">
+        {/* files */}
         <div className="LoginBlock">
           <UploadFileIcon
             sx={{
@@ -24,12 +26,11 @@ export default function Upload() {
               margin: "30px",
             }}
           />
-          <div className="UploadLabel">Upload PDFs</div>
+          <div className="LoginLabel">Upload PDFs</div>
           <div className="LoginForm">
             <form action="/upload/" method="post" encType="multipart/form-data">
               <CSRFtoken />
-              <TextField name={"name"} placeholder={"Title"} autoFocus={"on"} />
-              <p></p>
+              <BasicTextField name={"name"} placeholder={"Title"} autoFocus={"on"} />
               <Button
                 component="label"
                 role={undefined}
@@ -45,9 +46,32 @@ export default function Upload() {
                 Upload file
                 <VisuallyHiddenInput type="file" name="file" />
               </Button>
-              <br />
               <SubmitField text={"Confirm"} />
               <HelperLabel text={"Upload any .pdf file here"} />
+            </form>
+          </div>
+        </div>
+
+        {/* folders */}
+        <div className="LoginBlock">
+          <CreateNewFolderOutlinedIcon
+            sx={{
+              color: "var(--background)",
+              fontSize: "175px",
+              margin: "30px",
+            }}
+          />
+          <div className="LoginLabel">Create Folder</div>
+          <div className="LoginForm">
+            <form action="/api/createfolder/" method="post">
+              <CSRFtoken />
+              <BasicTextField
+                name={"foldername"}
+                placeholder={"Folder name"}
+                autoFocus={"on"}
+              />
+              <SubmitField text={"Confirm"} />
+              <HelperLabel text={"Create any new folders here"} />
             </form>
           </div>
         </div>

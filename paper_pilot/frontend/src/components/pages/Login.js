@@ -29,7 +29,7 @@ export default function Login() {
       <div className="LoginContainer">
         <div className="LoginBlock">
           <img src={logo} width={"300px"} height={"300px"} alt="img" />
-          <h1>Login</h1>
+          <div className="LoginLabel">Login</div>
           <div className="LoginForm">
             <form
               action="/api/login/"
@@ -44,7 +44,6 @@ export default function Login() {
                 value={username}
                 setValue={setUsername}
               />
-              <br />
               <PasswordField
                 name={"password"}
                 placeholder={"Password"}

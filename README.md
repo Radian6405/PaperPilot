@@ -35,7 +35,6 @@ If you want to run this project in your local machine follow these instructions:
 
 ## Status
 This project is still a **work in progress** with the following features in mind
-- Folders (check the `folder-system` branch to see the progress)
 - Bookmarks for each pdf
 - Favorite pdfs
 - Dark and light theme

@@ -49,12 +49,18 @@ def delete(request):
         if filetype == "folder":
             file = Folders.objects.get(id=filedata["id"])
             file.delete()
-            
-            
-        
+
     return HttpResponseRedirect("/")
 
+def create_folder(request):
+    if request.method =="POST":
+        name = request.POST["foldername"]
 
+        folder = Folders(name=name, user=request.user)
+        folder.save()
+
+        return HttpResponseRedirect("/")
+    return HttpResponseRedirect("/")
 
 # user authentication views
 def index(request):

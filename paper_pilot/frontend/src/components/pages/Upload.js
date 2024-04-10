@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { styled } from "@mui/material/styles";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
+import CreateNewFolderOutlinedIcon from "@mui/icons-material/CreateNewFolderOutlined";
 
 export default function Upload() {
   return (
@@ -52,6 +53,28 @@ export default function Upload() {
         </div>
 
         {/* folders */}
+        <div className="LoginBlock">
+          <CreateNewFolderOutlinedIcon
+            sx={{
+              color: "var(--background)",
+              fontSize: "175px",
+              margin: "30px",
+            }}
+          />
+          <div className="LoginLabel">Create Folder</div>
+          <div className="LoginForm">
+            <form action="/api/createfolder/" method="post">
+              <CSRFtoken />
+              <TextField
+                name={"foldername"}
+                placeholder={"Folder name"}
+                autoFocus={"on"}
+              />
+              <SubmitField text={"Confirm"} />
+              <HelperLabel text={"Create any new folders here"} />
+            </form>
+          </div>
+        </div>
       </div>
     </>
   );

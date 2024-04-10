@@ -17,7 +17,7 @@ def get_user(request):
 
 def get_pdfs(request):
     currentUser = request.user
-    fileList = currentUser.Files.all().values()
+    fileList = currentUser.Files.filter(folder=None).values()
     serializer = pdfSerializer(fileList, many=True)
 
     return JsonResponse(serializer.data, safe=False)
@@ -60,6 +60,22 @@ def create_folder(request):
         folder.save()
 
         return HttpResponseRedirect("/")
+    return HttpResponseRedirect("/")
+
+def change_folder(request):
+    if request.method =="POST":
+        data = json.loads(request.body) 
+
+        file = Files.objects.get(id=data["file"])
+        
+        if data["folder"] != -1:
+            folder = Folders.objects.get(id=data["folder"])
+        else:
+            folder = None
+
+        file.folder = folder
+        file.save()
+
     return HttpResponseRedirect("/")
 
 # user authentication views

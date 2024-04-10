@@ -4,7 +4,7 @@ import GetStarted from "./GetStarted";
 import FolderCard from "../viewers/FolderCard";
 
 export default function Home() {
-  const [filePaths, setFilePaths] = useState([]);
+  const [fileList, setfileList] = useState([]);
   const [folderList, setFolderList] = useState([]);
   const [user, setUser] = useState("Login");
   const fetchUser = () => {
@@ -19,7 +19,7 @@ export default function Home() {
   const fetchPDFs = () => {
     return fetch("/api/getpdfs/")
       .then((res) => res.json())
-      .then((d) => setFilePaths(d));
+      .then((d) => setfileList(d));
   };
   useEffect(() => {
     fetchPDFs();
@@ -35,7 +35,7 @@ export default function Home() {
   }, []);
 
   function loadFiles(file) {
-    return <FileCard key={crypto.randomUUID()} file_obj={file} />;
+    return <FileCard key={crypto.randomUUID()} file_obj={file} folder_list={folderList} />;
   }
   function loadFolders(folder_obj) {
     return <FolderCard key={crypto.randomUUID()} folder_obj={folder_obj} />;
@@ -55,7 +55,7 @@ export default function Home() {
           <div className="cardTitle">Files</div>
           <div className="SplitBar"></div>
 
-          <CardRow>{filePaths.map(loadFiles)}</CardRow>
+          <CardRow>{fileList.map(loadFiles)}</CardRow>
         </div>
       )}
     </>

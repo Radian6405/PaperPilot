@@ -18,6 +18,17 @@ export function TextField({ name, placeholder, autoFocus, value, setValue }) {
     />
   );
 }
+export function BasicTextField({ name, placeholder, autoFocus }) {
+  return (
+    <input
+      type="text"
+      name={name}
+      autoFocus={autoFocus}
+      placeholder={placeholder}
+      autoComplete="off"
+    />
+  );
+}
 
 export function PasswordField({ name, placeholder, password, setPassword }) {
   const [showPassword, setShowPassword] = useState(false);

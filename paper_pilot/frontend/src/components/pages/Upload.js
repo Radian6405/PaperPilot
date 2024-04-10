@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CSRFtoken from "../helpers/CSRFtoken";
 import {
-  TextField,
+  BasicTextField,
   PasswordField,
   SubmitField,
   HelperLabel,
@@ -30,7 +30,7 @@ export default function Upload() {
           <div className="LoginForm">
             <form action="/upload/" method="post" encType="multipart/form-data">
               <CSRFtoken />
-              <TextField name={"name"} placeholder={"Title"} autoFocus={"on"} />
+              <BasicTextField name={"name"} placeholder={"Title"} autoFocus={"on"} />
               <Button
                 component="label"
                 role={undefined}
@@ -65,7 +65,7 @@ export default function Upload() {
           <div className="LoginForm">
             <form action="/api/createfolder/" method="post">
               <CSRFtoken />
-              <TextField
+              <BasicTextField
                 name={"foldername"}
                 placeholder={"Folder name"}
                 autoFocus={"on"}

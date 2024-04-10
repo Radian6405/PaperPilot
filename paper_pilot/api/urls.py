@@ -11,6 +11,7 @@ urlpatterns = [
     #api calls to change data
     path('delete/', views.delete, name='delete'),
     path('createfolder/', views.create_folder, name='createfolder'),
+    path('changefolder/', views.change_folder, name='changefolder'),
 
     #api calls to send data
     path('getuser/', views.get_user, name='getuser'),

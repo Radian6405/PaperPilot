@@ -4,19 +4,20 @@ import { Document, Page } from "react-pdf";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 import Viewer, { NavigButton } from "./Viewer";
 import { getCookie } from "../helpers/CSRFtoken";
 
-export default function FileCard({ file_obj }) {
+export default function FileCard({ file_obj, folder_list }) {
   const [show, setShow] = useState(false);
   const [fullscreen, setFullscreen] = useState(true);
 
   const [showMenu, setShowMenu] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
   const [showPopup, setShowPopUp] = useState(false);
+
+  const [showMoveMenu, setShowMoveMenu] = useState(false);
 
   const handleShow = (breakpoint) => {
     setFullscreen(breakpoint);
@@ -45,6 +46,42 @@ export default function FileCard({ file_obj }) {
     });
   }
 
+  function changeFolder(file, folder) {
+    console.log(file, folder);
+
+    var csrftoken = getCookie("csrftoken");
+    var PostData = JSON.stringify({
+      file: file.id,
+      folder: folder.id,
+    });
+
+    // only applied to frontend here
+    setIsDeleted(true);
+
+    return fetch("/api/changefolder/", {
+      credentials: "include",
+      method: "POST",
+      // mode: "same-origin",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrftoken,
+      },
+      body: PostData,
+    });
+  }
+
+  function loadfoldernames(folder) {
+    return (
+      <MenuItem
+        key={crypto.randomUUID()}
+        OnClick={() => changeFolder(file_obj, folder)}
+      >
+        {folder.name}
+      </MenuItem>
+    );
+  }
+
   return (
     <>
       <div className="col" style={{ display: isDeleted ? "none" : "block" }}>
@@ -61,14 +98,36 @@ export default function FileCard({ file_obj }) {
                 <div
                   className="moreMenu"
                   style={{ display: showMenu ? "block" : "none" }}
-                  onMouseLeave={() => setShowMenu(false)}
+                  onMouseLeave={() => {
+                    setShowMenu(false);
+                    setShowMoveMenu(false);
+                  }}
                 >
                   <MenuItem
-                    action={"/api/delete"}
-                    OnClick={() => setShowPopUp(true)}
+                    OnClick={() => {
+                      setShowPopUp(true);
+                    }}
                   >
                     Delete
                   </MenuItem>
+                  {folder_list !== undefined ? (
+                    <MenuItem OnClick={() => setShowMoveMenu(true)}>
+                      Move to
+                      <div
+                        className="moreMenu"
+                        style={{ display: showMoveMenu ? "block" : "none" }}
+                        onMouseLeave={() => setShowMoveMenu(false)}
+                      >
+                        {folder_list.map(loadfoldernames)}
+                      </div>
+                    </MenuItem>
+                  ) : (
+                    <MenuItem
+                      OnClick={() => changeFolder(file_obj, { id: -1 })}
+                    >
+                      Remove
+                    </MenuItem>
+                  )}
                 </div>
               </div>
             </div>
@@ -121,7 +180,12 @@ export function MenuItem({ OnClick, children }) {
 
 export function ConfirmationPopup(props) {
   return (
-    <Modal show={props.show} onHide={props.onHide} aria-labelledby="contained-modal-title-vcenter" centered>
+    <Modal
+      show={props.show}
+      onHide={props.onHide}
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
       <Modal.Header
         style={{
           backgroundColor: "var(--accent)",

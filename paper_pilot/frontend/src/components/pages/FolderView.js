@@ -17,14 +17,8 @@ export default function FolderView() {
     fetchPDFs();
   }, []);
 
-  function loadFileThumbnails(file) {
-    return (
-      <FileCard
-        key={crypto.randomUUID()}
-        img_path={"../../../static/download.png"}
-        file_obj={file}
-      />
-    );
+  function loadFiles(file) {
+    return <FileCard key={crypto.randomUUID()} file_obj={file} />;
   }
 
   return (
@@ -38,7 +32,7 @@ export default function FolderView() {
           </NavigButton>
         </Link>
         <div className="SplitBar"></div>
-        <CardRow>{filePaths.map(loadFileThumbnails)}</CardRow>
+        <CardRow>{filePaths.map(loadFiles)}</CardRow>
       </div>
     </>
   );

@@ -19,7 +19,7 @@ export default function Logout() {
             <form action="/api/logout/" method="post">
               <CSRFtoken />
               <div
-                className="UploadLabel"
+                className="LoginLabel"
                 style={{ marginTop: "50px", marginBottom: "50px" }}
               >
                 <LogoutIcon
@@ -49,7 +49,7 @@ export default function Logout() {
           </div>
         </div>
       </div>
-      <div className="UploadLabel">Are you sure you want to logout?</div>
+      <div className="LoginLabel">Are you sure you want to logout?</div>
     </>
   );
 }

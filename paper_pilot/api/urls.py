@@ -8,11 +8,13 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('register/', views.register_view, name='register'),
 
-    #api calls
+    #api calls to change data
+    path('delete/', views.delete, name='delete'),
+
+    #api calls to send data
     path('getuser/', views.get_user, name='getuser'),
     path('getpdfs/', views.get_pdfs, name='getpdfs'),
     path('getfolders/', views.get_folders, name='getfolders'),
     path('folder/<int:fldr_id>', views.access_folder, name='accessfolders'),
-    path('delete/', views.delete, name='delete')
 
 ]

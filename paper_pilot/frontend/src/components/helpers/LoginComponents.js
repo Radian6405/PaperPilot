@@ -14,7 +14,7 @@ export function TextField({ name, placeholder, autoFocus, value, setValue }) {
       placeholder={placeholder}
       autoComplete="off"
       value={value}
-      onChange={e => setValue(e.target.value)}
+      onChange={(e) => setValue(e.target.value)}
     />
   );
 }
@@ -40,7 +40,7 @@ export function PasswordField({ name, placeholder, password, setPassword }) {
           padding: "0px",
           color: "var(--accent)",
           position: "absolute",
-          right: "17%",
+          right: "5%",
         }}
         className="PasswordCheckbox"
       />
@@ -60,6 +60,6 @@ export function HelperLabel({ text, to, toText }) {
   );
 }
 
-export function SubmitField({text}) {
+export function SubmitField({ text }) {
   return <input type="submit" value={text} />;
 }

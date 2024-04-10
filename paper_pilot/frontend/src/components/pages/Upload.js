@@ -16,6 +16,7 @@ export default function Upload() {
   return (
     <>
       <div className="LoginContainer">
+        {/* files */}
         <div className="LoginBlock">
           <UploadFileIcon
             sx={{
@@ -24,12 +25,11 @@ export default function Upload() {
               margin: "30px",
             }}
           />
-          <div className="UploadLabel">Upload PDFs</div>
+          <div className="LoginLabel">Upload PDFs</div>
           <div className="LoginForm">
             <form action="/upload/" method="post" encType="multipart/form-data">
               <CSRFtoken />
               <TextField name={"name"} placeholder={"Title"} autoFocus={"on"} />
-              <p></p>
               <Button
                 component="label"
                 role={undefined}
@@ -45,12 +45,13 @@ export default function Upload() {
                 Upload file
                 <VisuallyHiddenInput type="file" name="file" />
               </Button>
-              <br />
               <SubmitField text={"Confirm"} />
               <HelperLabel text={"Upload any .pdf file here"} />
             </form>
           </div>
         </div>
+
+        {/* folders */}
       </div>
     </>
   );

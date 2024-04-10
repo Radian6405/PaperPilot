@@ -2,7 +2,6 @@ import React, { Component, useState, useEffect } from "react";
 import FileCard from "../viewers/FileCard";
 import GetStarted from "./GetStarted";
 import FolderCard from "../viewers/FolderCard";
-import { Card } from "react-bootstrap";
 
 export default function Home() {
   const [filePaths, setFilePaths] = useState([]);
@@ -48,12 +47,12 @@ export default function Home() {
         <GetStarted />
       ) : (
         <div className="container">
-          <h1 style={{ marginTop: "20px" }}>Folders</h1>
+          <div className="cardTitle">Folders</div>
           <div className="SplitBar"></div>
 
           <CardRow>{folderList.map(loadFolders)}</CardRow>
 
-          <h1 style={{ marginTop: "20px" }}>Files</h1>
+          <div className="cardTitle">Files</div>
           <div className="SplitBar"></div>
 
           <CardRow>{filePaths.map(loadFiles)}</CardRow>
